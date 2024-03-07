@@ -6,6 +6,8 @@ import Account from "./components/Account";
 import { View, Text } from "react-native";
 import { Session } from "@supabase/supabase-js";
 
+import AuthNative from "./components/Auth.native";
+
 export default function App() {
   const [session, setSession] = useState<Session | null>(null);
 
@@ -21,8 +23,9 @@ export default function App() {
 
   return (
     <View>
-      <Text> Welcome please login!</Text>
-      <AuthDL />
+      <Text> Google LogIn!</Text>
+      <AuthNative />
+      {/* <AuthDL /> */}
       {/* {session && session.user ? (
         <Account key={session.user.id} session={session} />
       ) : (
