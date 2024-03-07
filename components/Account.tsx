@@ -4,6 +4,7 @@ import { StyleSheet, View, Alert, Text } from "react-native";
 import { Button, Input } from "react-native-elements";
 import { Session } from "@supabase/supabase-js";
 import { FlashList } from "@shopify/flash-list";
+import Avatar from "./Avatar";
 
 export default function Account({ session }: { session: Session }) {
   const [loading, setLoading] = useState(true);
@@ -92,6 +93,17 @@ export default function Account({ session }: { session: Session }) {
 
   return (
     <View style={styles.container}>
+      <View style={[styles.verticallySpaced, styles.mt20, styles.mb20]}>
+        <Avatar
+          size={200}
+          url={avatarUrl}
+          onUpload={(url: string) => {
+            setAvatarUrl(url);
+            updateProfile({ username, website, avatar_url: url });
+          }}
+        />
+      </View>
+
       <View style={[styles.verticallySpaced, styles.mt20]}>
         <Input label="Email" value={session?.user?.email} disabled />
       </View>
@@ -149,5 +161,11 @@ const styles = StyleSheet.create({
   },
   mt20: {
     marginTop: 20,
+  },
+  mb20: {
+    marginBottom: 20,
+  },
+  pb20: {
+    paddingBottom: 20,
   },
 });
