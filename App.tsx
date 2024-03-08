@@ -29,7 +29,8 @@ export default function App() {
       {session && session.user ? (
         <Account key={session.user.id} session={session} />
       ) : (
-        <AuthOTP />
+        // <AuthOTP />
+        <Auth />
       )}
     </View>
   );
