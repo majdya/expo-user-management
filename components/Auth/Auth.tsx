@@ -1,34 +1,32 @@
 import React, { useState } from "react";
 import { Alert, StyleSheet, View } from "react-native";
-import { supabase } from "../lib/supabase";
+import { supabase } from "../../lib/supabase";
 import { Button, Input } from "react-native-elements";
 
 export default function Auth() {
-  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  async function sendOtp() {
+  async function signInWithEmail() {
     setLoading(true);
-    const { data, error } = await supabase.auth.signInWithOtp({
-      phone,
-      //   options: { channel: "whatsapp" },// To use whatsapp
+    const { error } = await supabase.auth.signInWithPassword({
+      email: email,
+      password: password,
     });
-    console.log(data);
 
     if (error) Alert.alert(error.message);
     setLoading(false);
   }
 
-  async function verifyOtp() {
+  async function signUpWithEmail() {
     setLoading(true);
     const {
       data: { session },
       error,
-    } = await supabase.auth.verifyOtp({
-      phone,
-      token: password,
-      type: "sms",
+    } = await supabase.auth.signUp({
+      email: email,
+      password: password,
     });
 
     if (error) Alert.alert(error.message);
@@ -41,32 +39,37 @@ export default function Auth() {
     <View style={styles.container}>
       <View style={[styles.verticallySpaced, styles.mt20]}>
         <Input
-          label="phone"
-          leftIcon={{ type: "font-awesome", name: "phone" }}
-          onChangeText={(text) => setPhone(text)}
-          value={phone}
-          placeholder="+972-501234567"
+          label="Email"
+          leftIcon={{ type: "font-awesome", name: "envelope" }}
+          onChangeText={(text) => setEmail(text)}
+          value={email}
+          placeholder="email@address.com"
           autoCapitalize={"none"}
         />
       </View>
       <View style={styles.verticallySpaced}>
         <Input
-          label="OTP"
+          label="Password"
           leftIcon={{ type: "font-awesome", name: "lock" }}
           onChangeText={(text) => setPassword(text)}
           value={password}
-          placeholder="OTP"
+          secureTextEntry={true}
+          placeholder="Password"
           autoCapitalize={"none"}
         />
       </View>
       <View style={[styles.verticallySpaced, styles.mt20]}>
-        <Button title="Send OTP" disabled={loading} onPress={() => sendOtp()} />
+        <Button
+          title="Sign in"
+          disabled={loading}
+          onPress={() => signInWithEmail()}
+        />
       </View>
       <View style={styles.verticallySpaced}>
         <Button
-          title="Verify OTP"
+          title="Sign up"
           disabled={loading}
-          onPress={() => verifyOtp()}
+          onPress={() => signUpWithEmail()}
         />
       </View>
     </View>
