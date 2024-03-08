@@ -1,6 +1,7 @@
 import "react-native-url-polyfill/auto";
 import { useState, useEffect } from "react";
 import { supabase } from "./lib/supabase";
+import AuthOTP from "./components/AuthOTP";
 import Auth from "./components/Auth";
 import AuthNative from "./components/AuthNative";
 import AuthDL from "./components/AuthDeepLinking";
@@ -28,7 +29,7 @@ export default function App() {
       {session && session.user ? (
         <Account key={session.user.id} session={session} />
       ) : (
-        <Auth />
+        <AuthOTP />
       )}
     </View>
   );
