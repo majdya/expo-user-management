@@ -1,10 +1,10 @@
 import "react-native-url-polyfill/auto";
 import { useState, useEffect } from "react";
 import { supabase } from "./lib/supabase";
-import AuthOTP from "./components/AuthOTP";
-import Auth from "./components/Auth";
-import AuthNative from "./components/AuthNative";
-import AuthDL from "./components/AuthDeepLinking";
+import AuthOTP from "./components/Auth/AuthOTP";
+import Auth from "./components/Auth/Auth";
+import AuthNative from "./components/Auth/AuthNative";
+import AuthDL from "./components/Auth/AuthDeepLinking";
 import Account from "./components/Account";
 import { View, Text } from "react-native";
 import { Session } from "@supabase/supabase-js";
