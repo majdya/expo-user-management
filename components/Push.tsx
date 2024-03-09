@@ -15,6 +15,8 @@ export interface PushNotificationState {
   notification?: Notifications.Notification;
 }
 
+console.log(AWS_LOG_URL, config);
+
 export const usePushNotifications = (): PushNotificationState => {
   Notifications.setNotificationHandler({
     handleNotification: async () => ({
