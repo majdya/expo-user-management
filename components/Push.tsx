@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Platform } from "react-native";
+import { Platform, Alert } from "react-native";
 import * as Device from "expo-device";
 import Constants from "expo-constants";
 import * as Notifications from "expo-notifications";
@@ -79,8 +79,12 @@ export const usePushNotifications = (): PushNotificationState => {
           },
         };
 
-        const response = await axios.post(AWS_LOG_URL, body, config);
-        console.log("axios.post response");
+        try {
+          const response = await axios.post(AWS_LOG_URL, body, config);
+        } catch (error) {
+          console.log(error);
+          // Alert.alert(error);
+        }
         setNotification(notification);
       });
 
