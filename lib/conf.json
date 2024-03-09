@@ -1,0 +1,9 @@
+{
+    "AWS_LOG_URL": "https://hbggzfzi56hre5ojhqolr7m5ie0tdbvh.lambda-url.eu-central-1.on.aws/",
+    "config": {
+        "headers": {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*"
+        }
+    }
+}
