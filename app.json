@@ -22,7 +22,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.majdya.dev.expo.supabase"
+      "package": "com.majdya.dev.expo.supabase",
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -35,6 +36,11 @@
           "iosUrlScheme": "com.googleusercontent.apps._some_id_here_"
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "c404a552-f282-49af-b5a0-7037461775cf"
+      }
+    }
   }
 }

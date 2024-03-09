@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "899459128824",
+    "project_id": "expo-supabase-416522",
+    "storage_bucket": "expo-supabase-416522.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:899459128824:android:b879210f6514e2563e4a0d",
+        "android_client_info": {
+          "package_name": "com.majdya.dev.expo.supabase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "899459128824-gp3rbb1qvu3hm44oskq2c9s1rtvmft9a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.majdya.dev.expo.supabase",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "899459128824-qud6pmobdb2ehvu833i1dg9d8qh3v5cf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2Yn8LbL7zY7GMv_jvPCRRkVLWgTX2rRQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "899459128824-qud6pmobdb2ehvu833i1dg9d8qh3v5cf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
