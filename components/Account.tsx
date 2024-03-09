@@ -3,10 +3,13 @@ import { supabase } from "../lib/supabase";
 import { StyleSheet, View, Alert, Text } from "react-native";
 import { Button, Input } from "react-native-elements";
 import { Session } from "@supabase/supabase-js";
-import { FlashList } from "@shopify/flash-list";
 import Avatar from "./Avatar";
+import { usePushNotifications } from "./Push";
 
 export default function Account({ session }: { session: Session }) {
+  const { expoPushToken, notification } = usePushNotifications();
+  console.log("updateExpoToken----", expoPushToken?.data);
+
   const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState("");
   const [website, setWebsite] = useState("");
@@ -33,19 +36,25 @@ export default function Account({ session }: { session: Session }) {
       setLoading(true);
       if (!session?.user) throw new Error("No user on the session!");
 
-      const { data, error, status } = await supabase
-        .from("profiles")
-        .select(`username, website, avatar_url`)
-        .eq("id", session?.user.id)
-        .single();
-      if (error && status !== 406) {
-        throw error;
-      }
+      if (expoPushToken?.data) {
+        await supabase
+          .from("profiles")
+          .upsert({ id: session?.user.id, expo_token: expoPushToken?.data });
 
-      if (data) {
-        setUsername(data.username);
-        setWebsite(data.website);
-        setAvatarUrl(data.avatar_url);
+        const { data, error, status } = await supabase
+          .from("profiles")
+          .select(`username, website, avatar_url`)
+          .eq("id", session?.user.id)
+          .single();
+        if (error && status !== 406) {
+          throw error;
+        }
+
+        if (data) {
+          setUsername(data.username);
+          setWebsite(data.website);
+          setAvatarUrl(data.avatar_url);
+        }
       }
     } catch (error) {
       if (error instanceof Error) {
@@ -78,7 +87,6 @@ export default function Account({ session }: { session: Session }) {
       };
 
       const { error } = await supabase.from("profiles").upsert(updates);
-
       if (error) {
         throw error;
       }
@@ -135,7 +143,8 @@ export default function Account({ session }: { session: Session }) {
       <View style={[styles.verticallySpaced, { height: 500 }]}>
         <Button title="Sign Out" onPress={() => supabase.auth.signOut()} />
 
-        <FlashList
+        {/* <Push /> */}
+        {/* <FlashList
           data={users}
           renderItem={({ item }) => (
             <Text>
@@ -143,7 +152,7 @@ export default function Account({ session }: { session: Session }) {
             </Text>
           )}
           estimatedItemSize={200}
-        />
+        /> */}
       </View>
     </View>
   );
