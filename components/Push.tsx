@@ -78,8 +78,8 @@ export const usePushNotifications = (): PushNotificationState => {
         };
 
         const response = await axios.post(AWS_LOG_URL, body, config);
-        setNotification(notification);
         console.log("axios.post response");
+        setNotification(notification);
       });
 
     // Notification Clicked
