@@ -71,6 +71,7 @@ export const usePushNotifications = (): PushNotificationState => {
 
     notificationListener.current =
       Notifications.addNotificationReceivedListener(async (notification) => {
+        console.log(notification);
         const body = {
           userId: expoPushToken?.data,
           deviceMac: expoPushToken?.data,
